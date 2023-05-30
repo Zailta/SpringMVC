@@ -98,6 +98,7 @@ public class UIHandlerManager {
 		modelAndView.setViewName("searchUserPage");
 		return modelAndView;
 		}
+	
 
 
 	@RequestMapping(value = "/delete/{userName}", method = RequestMethod.GET) 
