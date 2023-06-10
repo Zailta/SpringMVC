@@ -18,6 +18,15 @@
 <div class = "container">
 <div class = "col-md-12">
 <h4 class = "text-center md-3">We welcome you to the CRUD APP, ${UserName}! </h4>
+<br>
+
+<div class="search-container">
+  <form action="/search" method="POST">
+    <input class="search expandright" id="searchright" type="search" name="searchright" placeholder="Search">
+    <button type="submit" class="btn  purple accent-4" >Search</button>
+  </form>
+</div>
+
 	<table class="striped">
         <thead>
           <tr>

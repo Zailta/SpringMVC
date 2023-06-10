@@ -110,4 +110,17 @@ public class UIHandlerManager {
 		return modelAndView;
 		}
 	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public ModelAndView FindUser(@RequestParam("searchright") String UserName) {
+		ModelAndView modelAndView = new ModelAndView();
+		if(UserName.equalsIgnoreCase("all"))
+			
+			modelAndView.addObject("userEntity", crudService.findAll());	
+		else 
+			modelAndView.addObject("userEntity", crudService.findByUserName(UserName));
+		
+		modelAndView.setViewName("searchUserPage");
+		return modelAndView;
+	}
+	
 }

@@ -35,6 +35,11 @@ public class CRUDService {
 		return findAll;
 	}
 	
+	public List<UserEntity> findByUserName(String userName){
+		return cruddao.findByUserName(userName);
+		 
+	}
+	
 	
 	
 }
