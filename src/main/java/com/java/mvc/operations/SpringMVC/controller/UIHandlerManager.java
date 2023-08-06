@@ -1,18 +1,30 @@
 package com.java.mvc.operations.SpringMVC.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.java.mvc.operations.SpringMVC.Entity.UserEntity;
 import com.java.mvc.operations.SpringMVC.service.CRUDService;
 
@@ -114,13 +126,35 @@ public class UIHandlerManager {
 	public ModelAndView FindUser(@RequestParam("searchright") String UserName) {
 		ModelAndView modelAndView = new ModelAndView();
 		if(UserName.equalsIgnoreCase("all"))
-			
 			modelAndView.addObject("userEntity", crudService.findAll());	
 		else 
 			modelAndView.addObject("userEntity", crudService.findByUserName(UserName));
 		
 		modelAndView.setViewName("searchUserPage");
 		return modelAndView;
+	}
+	@PostMapping(value = "/upload-file")
+	public ResponseEntity<String> FileUploadService(@RequestParam("file") MultipartFile file ) throws IOException {
+		try {
+		if(file.isEmpty())
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Please choose a valid File parameter");
+		//Reading the file 
+		InputStream inputStream = file.getInputStream();
+		byte [] fileByteStream = new byte[inputStream.available()];
+		inputStream.read(fileByteStream);
+		//writing the file 
+		String absolutePath = new ClassPathResource("\\static\\files\\").getFile().getAbsolutePath();
+			//	"C:\\Users\\hp\\Downloads\\SpringMVC\\SpringMVC\\src\\main\\resources\\static\\files\\";
+		Files.copy(file.getInputStream(), Paths.get(absolutePath+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
+		 return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath()
+				 .path("/files/").path(file.getOriginalFilename()).toUriString());
+		
+		
+
+		
 	}
 	
 }
