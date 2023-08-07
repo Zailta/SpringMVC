@@ -27,6 +27,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.java.mvc.operations.SpringMVC.Entity.UserEntity;
 import com.java.mvc.operations.SpringMVC.service.CRUDService;
+import com.java.mvc.operations.SpringMVC.service.ServiceUtility;
 
 @RestController
 public class UIHandlerManager {
@@ -138,15 +139,13 @@ public class UIHandlerManager {
 		try {
 		if(file.isEmpty())
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Please choose a valid File parameter");
-		//Reading the file 
-		InputStream inputStream = file.getInputStream();
-		byte [] fileByteStream = new byte[inputStream.available()];
-		inputStream.read(fileByteStream);
+		boolean fileUploadService = ServiceUtility.fileUploadService(file);
+		if(fileUploadService) {
+			return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath()
+					.path("/files/").path(file.getOriginalFilename()).toUriString());
+		}
 		//writing the file 
-		String absolutePath = new ClassPathResource("\\static\\files\\").getFile().getAbsolutePath();
-			//	"C:\\Users\\hp\\Downloads\\SpringMVC\\SpringMVC\\src\\main\\resources\\static\\files\\";
-		Files.copy(file.getInputStream(), Paths.get(absolutePath+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-		}catch(Exception e ) {
+			}catch(Exception e ) {
 			e.printStackTrace();
 		}
 		 return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath()
