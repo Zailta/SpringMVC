@@ -82,7 +82,6 @@ public class UIHandlerManager {
 	 * @param password
 	 * @return
 	 */
-	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginUser(@RequestParam String UserName, @RequestParam String password) {
 		ModelAndView modelAndView = new ModelAndView();
