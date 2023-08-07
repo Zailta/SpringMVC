@@ -92,6 +92,7 @@ public class UIHandlerManager {
 				modelAndView.addObject("UserName",userEntity.getUserName());
 				modelAndView.setViewName("searchUserPage");
 				
+				
 			} 
 			else {
 				modelAndView.setViewName("errorHandlerPage");
