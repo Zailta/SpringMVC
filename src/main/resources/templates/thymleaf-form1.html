@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>ThymeLeaf Page</title>
+</head>
+<body>
+
+	<!--Thymeleaf : loops-->
+	<div class="container">
+		<ul>
+			<li th:each = "n,status: ${namesList}">
+				<span th:text = "${status.index}+1+' '+${n}"></span>
+			</li>
+		</ul>
+		
+	</div>
+	
+	<!--Thymeleaf : Conditionals-->
+	<div class="container">
+		<ul>
+			<li th:text = "${isActive}?'Active':'Inactive'"></li>
+			<li th:if = "${gender}=='male'">Hello</li>
+			<li th:unless = "${gender}=='male'" th:text = "${gender}">Bye!</li>
+		</ul>
+	</div>
+	
+	<div class="container" th:switch = "${#lists.size(namesList)}">
+		
+		<li th:case="'0'"><h1>bye</h1></li>
+		<li th:case="'1'"></li>
+	</div>
+	
+	<!--Thymeleaf : Fragments-->
+	
+	<!--Thymeleaf : Dynamic parsing-->
+	
+	<!--Thymeleaf : Inheritance Template-->
+	
+	
+</body>
+</html>

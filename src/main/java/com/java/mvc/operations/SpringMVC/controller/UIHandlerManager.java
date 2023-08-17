@@ -29,7 +29,7 @@ import com.java.mvc.operations.SpringMVC.Entity.UserEntity;
 import com.java.mvc.operations.SpringMVC.service.CRUDService;
 import com.java.mvc.operations.SpringMVC.service.ServiceUtility;
 
-@RestController
+/*@RestController*/
 public class UIHandlerManager {
 	
 	@Autowired
