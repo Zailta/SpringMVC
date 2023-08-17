@@ -32,6 +32,15 @@
 	</div>
 	
 	<!--Thymeleaf : Fragments-->
+	<div>
+		<footer>
+			<li>This is the main Thymeleaf Page</li>
+			<div th:replace = "Thymeleaf-base-fragment::footer1"></div>
+			<div th:insert = "Thymeleaf-base-fragment::footer2"></div>
+			<div th:include = "Thymeleaf-base-fragment::footer3"></div>
+			
+		</footer>
+	</div>
 	
 	<!--Thymeleaf : Dynamic parsing-->
 	

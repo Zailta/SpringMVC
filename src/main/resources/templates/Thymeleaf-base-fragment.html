@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<footer th:fragment = "footer1">
+		<div>
+			<li>This is the content of a base fragment for replace </li>
+		</div>		
+	</footer>
+	
+		<footer th:fragment = "footer2">
+		<div>
+			<li>This is the content of a base fragment for insert </li>
+		</div>		
+	</footer>
+	
+		<footer th:fragment = "footer3">
+		<div>
+			<li>This is the content of a base fragment for include </li>
+		</div>		
+	</footer>
+</body>
+</html>
