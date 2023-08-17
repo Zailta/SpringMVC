@@ -34,15 +34,19 @@ public class ThymeleafController {
 	  return modelAndView;
 	  }
 	  
-		/*
-		 * public ModelAndView thymeleafFragments() {
-		 * 
-		 * }
-		 * 
-		 * public ModelAndView thymeleafInheritance() {
-		 * 
-		 * }
-		 */
+			@GetMapping("/dynamic-parsing")
+		  public ModelAndView thymeleafFragments() {
+		  modelAndView.addObject("title", "Main Fragment");
+		  modelAndView.addObject("serviceInvoker", "Handler Class");
+		  modelAndView.setViewName("thymleaf-form1");
+		  return modelAndView;
+		  }
+		  
+			/*
+			 * public ModelAndView thymeleafInheritance() {
+			 * 
+			 * }
+			 */		 
 	 
 
 }

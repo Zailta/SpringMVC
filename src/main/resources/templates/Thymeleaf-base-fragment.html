@@ -22,5 +22,11 @@
 			<li>This is the content of a base fragment for include </li>
 		</div>		
 	</footer>
+	<footer th:fragment = "footer4(title,serviceInvoker)">
+		<div>
+			<li th:text = "'The title is: '+${title}"></li>
+			<li th:text = "'The Invoker  is: '+${serviceInvoker}"></li>
+		</div>		
+	</footer>
 </body>
 </html>
