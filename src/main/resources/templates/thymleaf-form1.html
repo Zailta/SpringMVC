@@ -1,52 +1,59 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8" />
 	<title>ThymeLeaf Page</title>
 </head>
+
 <body>
 
 	<!--Thymeleaf : loops-->
 	<div class="container">
 		<ul>
-			<li th:each = "n,status: ${namesList}">
-				<span th:text = "${status.index}+1+' '+${n}"></span>
+			<li th:each="n,status: ${namesList}">
+				<span th:text="${status.index}+1+' '+${n}"></span>
 			</li>
 		</ul>
-		
+
 	</div>
-	
+
 	<!--Thymeleaf : Conditionals-->
 	<div class="container">
 		<ul>
-			<li th:text = "${isActive}?'Active':'Inactive'"></li>
-			<li th:if = "${gender}=='male'">Hello</li>
-			<li th:unless = "${gender}=='male'" th:text = "${gender}">Bye!</li>
+			<li th:text="${isActive}?'Active':'Inactive'"></li>
+			<li th:if="${gender}=='male'">Hello</li>
+			<li th:unless="${gender}=='male'" th:text="${gender}">Bye!</li>
 		</ul>
 	</div>
-	<div class="container" th:switch = "${#lists.size(namesList)}">
-		
+	<div class="container" th:switch="${#lists.size(namesList)}">
+
 		<li th:case="'0'">This is case one</li>
 		<li th:case="'4'">This is case four</li>
 		<li th:case="*">This is default case</li>
 	</div>
-	
+
 	<!--Thymeleaf : Fragments-->
 	<div>
 		<footer>
 			<li>This is the main Thymeleaf Page</li>
-			<div th:replace = "Thymeleaf-base-fragment::footer1"></div>
-			<div th:insert = "Thymeleaf-base-fragment::footer2"></div>
-			<div th:include = "Thymeleaf-base-fragment::footer3"></div>
-			
+			<div th:replace="Thymeleaf-base-fragment::footer1"></div>
+			<div th:insert="Thymeleaf-base-fragment::footer2"></div>
+			<div th:include="Thymeleaf-base-fragment::footer3"></div>
+
 		</footer>
 	</div>
-	
+
 	<!--Thymeleaf : Dynamic parsing-->
-	<div th:replace = "Thymeleaf-base-fragment::footer4(${title},${serviceInvoker})"></div>
-	
+	<div th:replace="Thymeleaf-base-fragment::footer4(${title},${serviceInvoker})"></div>
+
 	<!--Thymeleaf : Inheritance Template-->
-	
-	
+	<section>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit recusandae qui illum officia tenetur
+			quaerat omnis perferendis nihil itaque aperiam id voluptatum dolor aliquam atque vel! Magni nam itaque omnis
+			porro asperiores minus officia neque corporis assumenda delectus necessitatibus dolorem officiis ipsum quas
+			suscipit illo molestias. Voluptates ratione reiciendis minus.</p>
+	</section>
 </body>
+
 </html>

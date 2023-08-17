@@ -6,47 +6,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @RestController
 public class ThymeleafController {
-		private static ModelAndView modelAndView = new ModelAndView() ;
-	
-		@GetMapping(value = "/loop")
-	  public ModelAndView thymeleafLoops() {  
-		  List<String> namesList = List.of("Manaan", "Bhat", "Azam", "Bhat");
-		  modelAndView.addObject("namesList", namesList);
-		  modelAndView.setViewName("thymleaf-form1"); 
-		  return modelAndView;
-	   
-	  }
-		
-	 
-	
-		@GetMapping(value = "/conditionals")
-	  public ModelAndView thymeleafConditionals() {
-	  modelAndView.addObject("isActive", true);
-	  modelAndView.addObject("gender", "male");
-	  List<String> namesList = List.of("Manaan", "Bhat", "Azam", "Bhat");
-	  modelAndView.addObject("namesList", namesList);
-	  modelAndView.setViewName("thymleaf-form1");
+	private static ModelAndView modelAndView = new ModelAndView();
 
-	  
-	  return modelAndView;
-	  }
-	  
-			@GetMapping("/dynamic-parsing")
-		  public ModelAndView thymeleafFragments() {
-		  modelAndView.addObject("title", "Main Fragment");
-		  modelAndView.addObject("serviceInvoker", "Handler Class");
-		  modelAndView.setViewName("thymleaf-form1");
-		  return modelAndView;
-		  }
-		  
-			/*
-			 * public ModelAndView thymeleafInheritance() {
-			 * 
-			 * }
-			 */		 
-	 
+	@GetMapping(value = "/loop")
+	public ModelAndView thymeleafLoops() {
+		List<String> namesList = List.of("Manaan", "Bhat", "Azam", "Bhat");
+		modelAndView.addObject("namesList", namesList);
+		modelAndView.setViewName("thymleaf-form1");
+		return modelAndView;
+
+	}
+
+	@GetMapping(value = "/conditionals")
+	public ModelAndView thymeleafConditionals() {
+		modelAndView.addObject("isActive", true);
+		modelAndView.addObject("gender", "male");
+		List<String> namesList = List.of("Manaan", "Bhat", "Azam", "Bhat");
+		modelAndView.addObject("namesList", namesList);
+		modelAndView.setViewName("thymleaf-form1");
+
+		return modelAndView;
+	}
+
+	@GetMapping("/dynamic-parsing")
+	public ModelAndView thymeleafFragments() {
+
+		modelAndView.addObject("title", "Main Fragment");
+		modelAndView.addObject("serviceInvoker", "Handler Class");
+		modelAndView.setViewName("thymleaf-form1");
+		return modelAndView;
+	}
 
 }
