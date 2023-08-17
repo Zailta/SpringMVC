@@ -24,11 +24,11 @@
 			<li th:unless = "${gender}=='male'" th:text = "${gender}">Bye!</li>
 		</ul>
 	</div>
-	
 	<div class="container" th:switch = "${#lists.size(namesList)}">
 		
-		<li th:case="'0'"><h1>bye</h1></li>
-		<li th:case="'1'"></li>
+		<li th:case="'0'">This is case one</li>
+		<li th:case="'4'">This is case four</li>
+		<li th:case="*">This is default case</li>
 	</div>
 	
 	<!--Thymeleaf : Fragments-->
